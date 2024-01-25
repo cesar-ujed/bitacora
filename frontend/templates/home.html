@@ -2,33 +2,40 @@
 {% load static %}
 {% block content %}
 
-<br><br>
-<div class="container d-flex justify-content-between">
-    <div class="card" style="width: 40rem;">
-        <div class="card-body">
-            <h5 class="card-title">Administrador</h5>
-            <p class="card-text">Revisa la bitacora de tu Dirección. Solo los administradores podran ver esta información.</p>
-            <a href="#" class="btn btn-primary">Ver bitácora</a>
+<br>
+<br>
+<div class="container">
+    <div class="row">
+        <div class="col-lg">
+            <div class="card" style="width: 25rem;">
+                <div class="card-body">
+                    <h5 class="card-title">Administrador</h5>
+                    <p class="card-text">Revisa la bitacora de tu Dirección. Solo los administradores podran ver esta información.</p>
+                    <a href="{% url 'admin' %}" class="btn btn-primary">Ver bitácora</a>
+                </div>
+            </div>
         </div>
-    </div>
-  
-    <div class="card" style="width: 40rem;">
-        <div class="card-body">
-            <h5 class="card-title">Personal</h5>
-            <p class="card-text">Como personal aquí podrás registrar tus actividades.</p>
-            <a href="#" class="btn btn-primary">Registrar nueva actividad</a>
+        <div class="col-lg">
+            <div class="card" style="width: 25rem;">
+                <div class="card-body">
+                    <h5 class="card-title">Personal</h5>
+                    <p class="card-text">Como personal aquí podrás registrar tus actividades.</p>
+                    <a href="{% url 'personal' %}" class="btn btn-primary">Registrar nueva actividad</a>
+                </div>
+            </div>            
         </div>
     </div>
 </div>
+
 <section>
     <footer class="bottom">
       <div class="legal">
         <span>Universidad Juarez del Estado de Durango | Subsecretaria General Academica</span>
       </div>
-      <div class="links">
-        <a class="fa-brands fa-facebook"></a>
-      </div>
     </footer>
 </section>
   
 {% endblock %}
+
+
+

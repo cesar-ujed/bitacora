@@ -39,3 +39,11 @@ class LogoutView(View):
         # Redirige a la página de inicio u otra página después de cerrar la sesión
         return redirect(reverse('login'))
 
+
+def AdminView(request):
+     return render(request, 'admin.html')
+
+
+def PersonalView(request):
+     return render(request, 'personal.html')
+
