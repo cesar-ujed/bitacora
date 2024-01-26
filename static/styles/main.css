@@ -160,5 +160,7 @@ footer.bottom .links > a {
   height: 100vh; /* Ajusta la altura según tus necesidades */
 }
 
-
+.container{
+  margin-top: 20px;
+}
 

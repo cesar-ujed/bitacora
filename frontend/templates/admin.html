@@ -3,15 +3,15 @@
 
 {% block content %}
 
-<br>
 <div class="container">
+    <h1>Bienvenido administrador {{ user.username }}</h1>
     <div class="row">
         <div class="col-lg">
             <div class="card" style="width: 18rem; margin: 1em;">
                 <div class="card-body">
                   <h5 class="card-title">PI</h5>
                   <p class="card-text">Dirección de Planeacion Intitucional. Bitácora de actividades</p>
-                  <a href="#" class="btn btn-primary">Administrar bitácora</a>
+                  <a href="{% url 'adminplan' %}" class="btn btn-primary">Administrar bitácora</a>
                 </div>
             </div>
         </div>
@@ -46,11 +46,11 @@
     </div>
 </div>  
 
-<br><br><br><br><br>
+<br><br><br>
 
 <footer class="bottom">
     <div class="legal">
-        <span>Universidad Juarez del Estado de Durango | Subsecretaria General Academica</span>
+        <span>Universidad Juárez del Estado de Durango | Subsecretaria General Académica</span>
     </div>
 </footer>
 
