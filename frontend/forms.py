@@ -1,5 +1,5 @@
 from django.contrib.auth.forms import UserCreationForm
-from api.models import Planeacion, Servicios, Internacionalizacion
+from api.models import Planeacion, Servicios, Internacionalizacion, Desarrollo
 from django import forms
 
 class PlanForm(forms.ModelForm):
@@ -54,6 +54,25 @@ class IntAdminForm(forms.ModelForm):
 
     class Meta:
         model = Internacionalizacion
+        fields=['autorizacion', 'observacion']
+        widgets = {
+            'autorizacion': forms.CheckboxInput(attrs={'class': 'form-check-input'}),
+            }
+        
+
+# DIRECCIÓN DE DESARROLLO Y FORTALECIMIENTO ACADÉMICO
+class DesForm(forms.ModelForm):
+
+    class Meta:
+        model = Desarrollo
+        fields='__all__'
+        exclude = ['autorizacion', 'observacion']
+
+
+class DesAdminForm(forms.ModelForm):
+
+    class Meta:
+        model = Desarrollo
         fields=['autorizacion', 'observacion']
         widgets = {
             'autorizacion': forms.CheckboxInput(attrs={'class': 'form-check-input'}),

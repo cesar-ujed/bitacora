@@ -80,7 +80,8 @@ class PlanList(UserPassesTestMixin, ListView):
     # paginate_by = 5
 
     def test_func(self):
-        return self.request.user.groups.filter(name='Planeacion_admin').exists()
+        allowed_groups = ['Administrador', 'Planeacion_admin']
+        return self.request.user.groups.filter(name__in=allowed_groups).exists()
 
 
 
@@ -121,7 +122,8 @@ class ServList(UserPassesTestMixin, ListView):
     # paginate_by = 5
 
     def test_func(self):
-        return self.request.user.groups.filter(name='Servicios_admin').exists()
+        allowed_groups = ['Administrador', 'Servicios_admin']
+        return self.request.user.groups.filter(name__in=allowed_groups).exists()
     
 
 # --Update SE (autorizacion e observación)
@@ -160,7 +162,8 @@ class IntList(UserPassesTestMixin, ListView):
     # paginate_by = 5
 
     def test_func(self):
-        return self.request.user.groups.filter(name='Internacionalizacion_Admin').exists()
+        allowed_groups = ['Administrador', 'Internacionalizacion_Admin']
+        return self.request.user.groups.filter(name__in=allowed_groups).exists()
     
 
 # --Update DI (autorizacion e observación)
@@ -169,3 +172,41 @@ class EditInt(UpdateView):
     template_name = 'editint.html'
     form_class = IntAdminForm
     success_url = reverse_lazy('adminint')   
+
+
+# DIRECCIÓN DE DESARROLLO Y FORTALECIMIENTO ACADÉMICO
+class CreateDes(UserPassesTestMixin, CreateView):
+    model = Desarrollo
+    template_name='adddes.html'
+    form_class = DesForm
+    success_url = reverse_lazy('home')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['departamentos'] = Departamento.objects.filter(id=4)
+        context['usuarios'] = User.objects.all()
+        return context
+    
+
+    def test_func(self):
+        allowed_groups = ['desarrollo', 'Desarrollo_Admin']
+        return self.request.user.groups.filter(name__in=allowed_groups).exists()
+
+
+# --ListView DFA
+class DesList(UserPassesTestMixin, ListView):
+    model = Desarrollo
+    template_name = "des_admin.html"
+    context_object_name = "des_actividades"
+
+    def test_func(self):
+        allowed_groups = ['Administrador', 'Desarrollo_Admin']
+        return self.request.user.groups.filter(name__in=allowed_groups).exists()  
+
+
+# --Update DFA (autorizacion e observación)
+class EditDes(UpdateView):
+    model = Desarrollo
+    template_name = 'editdes.html'
+    form_class = DesAdminForm
+    success_url = reverse_lazy('admindes')              

@@ -1,0 +1,47 @@
+{% extends "layouts/main.html" %}
+{% load static %}
+{% block content %}
+
+<div class="container">
+    <h1>Bitácora de Desarrollo y Fortalecimiento Académico</h1>
+    <br><br>
+    <table class="table table-striped" border="1">
+      <thead>
+        <tr class="table-primary">
+          <th>Fecha</th>
+          <th>Hora inicio</th>
+          <th>Hora final</th>
+          <th>Total</th>
+          <th>Actividad</th>
+          <th>Usuario</th>
+          <th>Autorización</th>
+          <th>Observacion</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for i in des_actividades %}
+          <tr>
+            <td>{{ i.fecha }}</td>
+            <td>{{ i.hora_inicio }}</td>
+            <td>{{ i.hora_final }}</td>
+            <td>{{ i.horas_total }} hrs.</td>
+            <td>{{ i.actividad }}</td>
+            <td>{{ i.usuario.first_name }} {{i.usuario.last_name}}</td>
+            <td>
+              {% if i.autorizacion == True %}
+                Autorizado
+              {% else %}
+                No autorizado
+              {% endif %}
+            </td>
+            <td>{{ i.observacion }}</td>
+            <td><a href="{% url 'editardes' pk=i.pk %}">Revisar</a></td>
+          </tr>
+          {% endfor %}
+        </tbody>
+    </table>
+  </div>
+  <br><br>
+
+{%endblock%}
