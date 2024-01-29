@@ -130,3 +130,42 @@ class EdithServ(UpdateView):
     template_name = 'editserv.html'
     form_class = ServAdminForm
     success_url = reverse_lazy('adminserv')    
+
+
+
+# DIRECCIÓN DE INTERNACIONALIZACÓN
+class CreateInt(UserPassesTestMixin, CreateView):
+    model = Internacionalizacion
+    template_name='addint.html'
+    form_class = IntForm
+    success_url = reverse_lazy('home')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['departamentos'] = Departamento.objects.filter(id=3)
+        context['usuarios'] = User.objects.all()
+        return context
+    
+
+    def test_func(self):
+        allowed_groups = ['internacionalizacion', 'Internacionalizacion_Admin']
+        return self.request.user.groups.filter(name__in=allowed_groups).exists()        
+
+
+# --ListView DI
+class IntList(UserPassesTestMixin, ListView):
+    model = Internacionalizacion
+    template_name = "int_admin.html"
+    context_object_name = "int_actividades"
+    # paginate_by = 5
+
+    def test_func(self):
+        return self.request.user.groups.filter(name='Internacionalizacion_Admin').exists()
+    
+
+# --Update DI (autorizacion e observación)
+class EditInt(UpdateView):
+    model = Internacionalizacion
+    template_name = 'editint.html'
+    form_class = IntAdminForm
+    success_url = reverse_lazy('adminint')   

@@ -1,7 +1,7 @@
 from django.urls import path
 from django.contrib.auth.decorators import login_required
 from frontend import views
-from .views import AdminView, CreatePlan, PlanList, EdithPlan, CreateServ, ServList, EdithServ
+from .views import AdminView, CreatePlan, PlanList, EdithPlan, CreateServ, ServList, EdithServ, CreateInt, IntList, EditInt
 
 urlpatterns = [
     path('', views.login_page , name='login'),
@@ -16,4 +16,8 @@ urlpatterns = [
     path('add_servicios_educativos/', login_required(CreateServ.as_view()), name='addserv'),
     path('servicios_educativos_admin/', login_required(ServList.as_view()), name='adminserv'),
     path('editar/<int:pk>/', login_required(EdithServ.as_view()), name='editarserv'),
+    # -- Internacionalización
+    path('add_internacionalizacion/', login_required(CreateInt.as_view()),  name='addint'),
+    path('internacionalizacion_admin/', login_required(IntList.as_view()), name='adminint'),
+    path('edit_internacionalizacion/<int:pk>/', login_required(EditInt.as_view()), name='editarint'),
 ]
