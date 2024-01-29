@@ -91,3 +91,42 @@ class EdithPlan(UpdateView):
     form_class = PlanAdminForm
     success_url = reverse_lazy('adminplan')
 
+
+
+# DIRECCIÓN DE SERVICIOS EDUCATIVOS
+
+class CreateServ(UserPassesTestMixin, CreateView):
+    model = Servicios
+    template_name='addserv.html'
+    form_class = ServForm
+    success_url = reverse_lazy('home')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['departamentos'] = Departamento.objects.filter(id=2)
+        context['usuarios'] = User.objects.all()
+        return context
+    
+
+    def test_func(self):
+        allowed_groups = ['servicios', 'Servicios_admin']
+        return self.request.user.groups.filter(name__in=allowed_groups).exists()        
+
+
+# --ListView SE
+class ServList(UserPassesTestMixin, ListView):
+    model = Servicios
+    template_name = "serv_admin.html"
+    context_object_name = "serv_actividades"
+    # paginate_by = 5
+
+    def test_func(self):
+        return self.request.user.groups.filter(name='Servicios_admin').exists()
+    
+
+# --Update SE (autorizacion e observación)
+class EdithServ(UpdateView):
+    model = Servicios
+    template_name = 'editserv.html'
+    form_class = ServAdminForm
+    success_url = reverse_lazy('adminserv')    

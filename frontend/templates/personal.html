@@ -5,6 +5,7 @@
 
 <div class="container">
     <h1>Bienvenido {{ user.username }}</h1>
+    <br>
     <div class="row">
         <div class="col-lg">
             <div class="card" style="width: 18rem; margin: 1em;">
@@ -20,7 +21,7 @@
                 <div class="card-body">
                   <h5 class="card-title">SE</h5>
                   <p class="card-text">Dirección de Servicios Educativos. Actividades</p>
-                  <a href="#" class="btn btn-primary">Crear Actividad +</a>
+                  <a href="{% url 'addserv' %}" class="btn btn-primary">Crear Actividad +</a>
                 </div>
             </div>
         </div>

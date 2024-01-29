@@ -3,7 +3,7 @@
 {% block content %}
 
 <div class="container">
-    <h1>Bitácora de Planeación Institucional</h1>
+    <h1>Bitácora de Servicios Educativos</h1>
     <br><br>
     <table class="table table-striped" border="1">
       <thead>
@@ -20,7 +20,7 @@
         </tr>
       </thead>
       <tbody>
-        {% for i in plan_actividades %}
+        {% for i in serv_actividades %}
           <tr>
             <td>{{ i.fecha }}</td>
             <td>{{ i.hora_inicio }}</td>
@@ -36,7 +36,7 @@
               {% endif %}
             </td>
             <td>{{ i.observacion }}</td>
-            <td><a href="{% url 'editarplan' pk=i.pk %}">Revisar</a></td>
+            <td><a href="{% url 'editarserv' pk=i.pk %}">Revisar</a></td>
           </tr>
           {% endfor %}
         </tbody>
