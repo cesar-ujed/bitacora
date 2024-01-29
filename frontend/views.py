@@ -58,7 +58,7 @@ class CreatePlan(UserPassesTestMixin, CreateView):
     model = Planeacion
     template_name='addplan.html'
     form_class = PlanForm
-    success_url = reverse_lazy('home')
+    success_url = reverse_lazy('success')
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -100,7 +100,7 @@ class CreateServ(UserPassesTestMixin, CreateView):
     model = Servicios
     template_name='addserv.html'
     form_class = ServForm
-    success_url = reverse_lazy('home')
+    success_url = reverse_lazy('success_serv')
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -140,7 +140,7 @@ class CreateInt(UserPassesTestMixin, CreateView):
     model = Internacionalizacion
     template_name='addint.html'
     form_class = IntForm
-    success_url = reverse_lazy('home')
+    success_url = reverse_lazy('success_int')
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -179,7 +179,7 @@ class CreateDes(UserPassesTestMixin, CreateView):
     model = Desarrollo
     template_name='adddes.html'
     form_class = DesForm
-    success_url = reverse_lazy('home')
+    success_url = reverse_lazy('success_des')
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -209,4 +209,36 @@ class EditDes(UpdateView):
     model = Desarrollo
     template_name = 'editdes.html'
     form_class = DesAdminForm
-    success_url = reverse_lazy('admindes')              
+    success_url = reverse_lazy('admindes')   
+
+
+# View de guardado con exito
+class SuccessView(View):
+    template_name = 'success.html' 
+
+    def get(self, request):
+        return render(request, self.template_name)
+    
+
+# View de guardado con exito
+class SuccessSEView(View):
+    template_name = 'success_se.html' 
+
+    def get(self, request):
+        return render(request, self.template_name) 
+
+
+# View de guardado con exito
+class SuccessIView(View):
+    template_name = 'success_i.html' 
+
+    def get(self, request):
+        return render(request, self.template_name)
+    
+
+# View de guardado con exito
+class SuccessDesView(View):
+    template_name = 'success_des.html' 
+
+    def get(self, request):
+        return render(request, self.template_name)    

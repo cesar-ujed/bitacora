@@ -1,7 +1,7 @@
 from django.urls import path
 from django.contrib.auth.decorators import login_required
 from frontend import views
-from .views import AdminView, CreatePlan, PlanList, EdithPlan, CreateServ, ServList, EdithServ, CreateInt, IntList, EditInt, CreateDes, DesList, EditDes
+from .views import AdminView, CreatePlan, PlanList, EdithPlan, CreateServ, ServList, EdithServ, CreateInt, IntList, EditInt, CreateDes, DesList, EditDes, SuccessView, SuccessSEView, SuccessIView, SuccessDesView
 
 urlpatterns = [
     path('', views.login_page , name='login'),
@@ -9,6 +9,12 @@ urlpatterns = [
     path('logout/', login_required(views.LogoutView.as_view()), name="logout"),
     path('administrador/', login_required(views.AdminView), name='admin'),
     path('personal/', login_required(views.PersonalView), name='personal'),
+    # -- success
+    path('success_page/',                   login_required(SuccessView.as_view()),      name='success'),
+    path('success_servicios/',              login_required(SuccessSEView.as_view()),    name='success_serv'),
+    path('success_internacionalizacion/',   login_required(SuccessIView.as_view()),     name='success_int'),
+    path('success_desarrollo/',             login_required(SuccessDesView.as_view()),   name='success_des'),
+    # -- Planeacion
     path('add_planeacion/', login_required(CreatePlan.as_view()), name='addplan'),
     path('planeacion_admin/', login_required(PlanList.as_view()), name='adminplan'),
     path('editar_actividad/<int:pk>/', login_required(EdithPlan.as_view()), name='editarplan'),
