@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.contrib.auth import login, authenticate, logout
 from django.urls import reverse
 from django.views import View
@@ -45,6 +45,32 @@ class LogoutView(View):
         # Redirige a la página de inicio u otra página después de cerrar la sesión
         return redirect(reverse('login'))
 
+
+def user_register(request):
+
+    if request.method == 'GET':
+        return render(request, 'signup.html', {
+        'form': UserCreationForm 
+    })
+    else:
+        if request.POST['password1'] == request.POST['password2']:
+            try:
+                user = User.objects.create_user(username=request.POST['username'], password=request.POST['password1'])
+                user.save()
+                # usuario
+                #login(request, user)
+                return redirect('login')
+            except:
+                # return HttpResponse('el usuario ya existe')
+                return render(request, 'signup.html', {
+                    'form': UserCreationForm,
+                    'error' : 'usario ya existe' 
+                })
+        # return HttpResponse('passwords no coinciden')
+        return render(request, 'signup.html', {
+            'form': UserCreationForm, 
+            'error': 'passwords no coinciden'
+    })
 
 def AdminView(request):
      return render(request, 'admin.html')
