@@ -3,7 +3,11 @@
 {% block content %}
 
 <div class="container">
-    <h1>Bitácora de Servicios Educativos</h1>
+    <h2>Bienvenido a tu perfil</h2>
+    <p>{{ user.username }}</p>
+</div>
+<div class="container">
+    <h1>Mi bitácora</h1>
     <br><br>
     <table class="table table-striped" border="1">
       <thead>
@@ -13,21 +17,18 @@
           <th>Hora final</th>
           <th>Total</th>
           <th>Actividad</th>
-          <th>Usuario</th>
           <th>Autorización</th>
           <th>Observacion</th>
-          <th>Acciones</th>
         </tr>
       </thead>
       <tbody>
-        {% for i in serv_actividades %}
+        {% for i in records %}
           <tr>
             <td>{{ i.fecha }}</td>
             <td>{{ i.hora_inicio }}</td>
             <td>{{ i.hora_final }}</td>
             <td>{{ i.horas_total }} hrs.</td>
             <td>{{ i.actividad }}</td>
-            <td>{{ i.usuario.first_name }} {{i.usuario.last_name}}</td>
             <td>
               {% if i.autorizacion == True %}
                 Autorizado
@@ -36,7 +37,6 @@
               {% endif %}
             </td>
             <td>{{ i.observacion }}</td>
-            <td><a href="{% url 'editarserv' pk=i.pk %}">✎</a></td>
           </tr>
           {% endfor %}
         </tbody>
@@ -44,4 +44,4 @@
   </div>
   <br><br>
 
-{%endblock%}
+{% endblock %}

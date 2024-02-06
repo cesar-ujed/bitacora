@@ -1,15 +1,18 @@
 from django.urls import path
 from django.contrib.auth.decorators import login_required
 from frontend import views
-from .views import AdminView, CreatePlan, PlanList, EdithPlan, CreateServ, ServList, EdithServ, CreateInt, IntList, EditInt, CreateDes, DesList, EditDes, SuccessView, SuccessSEView, SuccessIView, SuccessDesView
+from .views import AdminView, CreatePlan, PlanList, EdithPlan, CreateServ, ServList, EdithServ, CreateInt, IntList, EditInt, CreateDes, DesList, EditDes, SuccessView, SuccessSEView, SuccessIView, SuccessDesView, UserRecordsView
 
 
 
 urlpatterns = [
+    # -- account
     path('', views.login_page , name='login'),
     path('home/', views.home_page , name='home'),
     path('logout/', login_required(views.LogoutView.as_view()), name="logout"),
     path('registrarme/', views.user_register, name='signup'),
+    # -- user profile
+    path("profile/", login_required(UserRecordsView.as_view()), name="perfiles"), 
     path('administrador/', login_required(views.AdminView), name='admin'),
     path('personal/', login_required(views.PersonalView), name='personal'),
     # -- success

@@ -11,7 +11,7 @@
                 <div class="card-body">
                     <h5 class="card-title">Administrador</h5>
                     <p class="card-text">Revisa la bitacora de tu Dirección. Solo los administradores podran ver esta información.</p>
-                    <a href="{% url 'admin' %}" class="btn btn-primary">Ver bitácora</a>
+                    <a href="{% url 'admin' %}" class="btn btn-primary">Ver bitácora →</a>
                 </div>
             </div>
         </div>
@@ -20,13 +20,22 @@
                 <div class="card-body">
                     <h5 class="card-title">Personal</h5>
                     <p class="card-text">Como personal aquí podrás registrar tus actividades.</p>
-                    <a href="{% url 'personal' %}" class="btn btn-primary">Registrar nueva actividad</a>
+                    <a href="{% url 'personal' %}" class="btn btn-primary">Registrar nueva actividad +</a>
                 </div>
             </div>            
         </div>
     </div>
 </div>
 
+<br><br><br><br><br><br><br><br><br><br>
+
+<nav class="navbar" style="background-color: #b3142c;">
+    <div class="container">
+      <a class="navbar-brand" href="#">
+        <img src="{% static 'images/logo-ujed.png' %}" alt="Bootstrap" width="100" height="60">
+      </a>
+    </div>
+</nav>
 <section>
     <footer class="bottom">
       <div class="legal">

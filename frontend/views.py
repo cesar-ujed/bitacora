@@ -9,6 +9,8 @@ from api.models import *
 from .forms import *
 from django.urls import reverse_lazy
 from django.views.generic import ListView
+from itertools import chain
+
 
 # Create your views here.
 def login_page(request):
@@ -104,6 +106,7 @@ class PlanList(UserPassesTestMixin, ListView):
     template_name = "plan_admin.html"
     context_object_name = "plan_actividades"
     # paginate_by = 5
+    ordering = 'id'
 
     def test_func(self):
         allowed_groups = ['Administrador', 'Planeacion_admin']
@@ -267,4 +270,19 @@ class SuccessDesView(View):
     template_name = 'success_des.html' 
 
     def get(self, request):
-        return render(request, self.template_name)    
+        return render(request, self.template_name)
+
+
+
+# Vista para Perfil
+class UserRecordsView(ListView):
+    template_name = 'perfil.html'
+    context_object_name = 'records'
+
+    def get_queryset(self):
+        registros_modelo1 = Planeacion.objects.filter(usuario=self.request.user)
+        registros_modelo2 = Servicios.objects.filter(usuario=self.request.user)
+        registros_modelo3 = Internacionalizacion.objects.filter(usuario=self.request.user)
+        registros_modelo4 = Desarrollo.objects.filter(usuario=self.request.user)
+
+        return list(chain(registros_modelo1, registros_modelo2, registros_modelo3, registros_modelo4))
