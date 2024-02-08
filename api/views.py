@@ -29,4 +29,9 @@ class DesarrolloViewSet(viewsets.ModelViewSet):
     serializer_class = DesarrolloSerializer    
 
 
+class SubsecretariaViewSet(viewsets.ModelViewSet):
+    queryset = Subsecretaria.objects.all()
+    serializer_class = SubsecretariaSerializer  
+
+
 

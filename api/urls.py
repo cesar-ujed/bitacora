@@ -9,6 +9,7 @@ router.register(r'planeacion', views.PlaneacionViewSet)
 router.register(r'servicios', views.ServiciosViewSet)
 router.register(r'internacionalizacion', views.InternacionalizacionViewSet)
 router.register(r'desarrollo', views.DesarrolloViewSet)
+router.register(r'subsecretaria', views.SubsecretariaViewSet)
 
 
 urlpatterns = [

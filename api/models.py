@@ -76,5 +76,20 @@ class Desarrollo(models.Model):
     usuario         = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.actividad        
+        return self.actividad 
+
+
+class Subsecretaria(models.Model):
+    fecha           = models.DateField(auto_now_add=True)
+    hora_inicio     = models.DateTimeField(auto_now_add=False)
+    hora_final      = models.DateTimeField(auto_now_add=False)
+    horas_total     = models.FloatField(null=True)
+    actividad       = models.CharField(max_length=255)
+    autorizacion    = models.BooleanField(default=False, null=True)
+    observacion     = models.CharField(max_length=255, null=True)
+    evidencia        = models.FileField(upload_to='archivos_pdf/', null=True)
+    usuario         = models.ForeignKey(User, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.actividad                  
         

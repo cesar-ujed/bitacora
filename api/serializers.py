@@ -28,4 +28,10 @@ class InternacionalizacionSerializer(serializers.ModelSerializer):
 class DesarrolloSerializer(serializers.ModelSerializer):
     class Meta:
         model = Desarrollo
-        fields='_all_'          
+        fields='_all_'       
+
+
+class SubsecretariaSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Subsecretaria
+        fields='__all__'   
