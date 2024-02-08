@@ -5,7 +5,12 @@
 <div class="container">
     <div class="card mx-auto" style="width: 30rem;">
       <div class="card-body">
-        <h1>💾 Actividad agregada correctamente!</h1>
+        <div class="card-title">
+          <h1>💾 Actividad agregada correctamente!</h1>
+        </div>
+        <div class="card-text">
+          <p>Tu actividad fue almacenada y esta lista para ser revisada por tu Director.</p>
+        </div>
         <div class="card-footer">
             <a class="btn btn-sm btn-primary float-end" type="button" href={% url 'home' %}>Volver a home</a>
             <a class="btn btn-sm btn-primary" type="button" href={% url 'addserv' %}>Agregar otra actividad +</a>
@@ -13,5 +18,17 @@
       </div>
     </div>
 </div>
-
+<br><br><br><br>
+<nav class="navbar" style="background-color: #b3142c; margin-top: 15%;">
+    <div class="container">
+      <a class="navbar-brand" href="#">
+        <img src="{% static 'images/logo-ujed.png' %}" alt="Bootstrap" width="100" height="60">
+      </a>
+    </div>
+</nav>
+<footer class="bottom">
+    <div class="legal">
+        <span>Universidad Juárez del Estado de Durango | Subsecretaría General Académica</span>
+    </div>
+</footer>
 {%endblock%}

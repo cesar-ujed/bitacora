@@ -106,7 +106,7 @@ class PlanList(UserPassesTestMixin, ListView):
     template_name = "plan_admin.html"
     context_object_name = "plan_actividades"
     # paginate_by = 5
-    ordering = 'id'
+    ordering = '-id'
 
     def test_func(self):
         allowed_groups = ['Administrador', 'Planeacion_admin']
@@ -148,7 +148,7 @@ class ServList(UserPassesTestMixin, ListView):
     model = Servicios
     template_name = "serv_admin.html"
     context_object_name = "serv_actividades"
-    # paginate_by = 5
+    ordering = '-id'
 
     def test_func(self):
         allowed_groups = ['Administrador', 'Servicios_admin']
@@ -278,11 +278,12 @@ class SuccessDesView(View):
 class UserRecordsView(ListView):
     template_name = 'perfil.html'
     context_object_name = 'records'
+    ordering = '-id'
 
     def get_queryset(self):
-        registros_modelo1 = Planeacion.objects.filter(usuario=self.request.user)
-        registros_modelo2 = Servicios.objects.filter(usuario=self.request.user)
-        registros_modelo3 = Internacionalizacion.objects.filter(usuario=self.request.user)
-        registros_modelo4 = Desarrollo.objects.filter(usuario=self.request.user)
+        registros_modelo1 = Planeacion.objects.filter(usuario=self.request.user).order_by('-id')
+        registros_modelo2 = Servicios.objects.filter(usuario=self.request.user).order_by('-id')
+        registros_modelo3 = Internacionalizacion.objects.filter(usuario=self.request.user).order_by('-id')
+        registros_modelo4 = Desarrollo.objects.filter(usuario=self.request.user).order_by('-id')
 
         return list(chain(registros_modelo1, registros_modelo2, registros_modelo3, registros_modelo4))
