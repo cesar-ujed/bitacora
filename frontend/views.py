@@ -1,4 +1,7 @@
-from django.shortcuts import render, redirect
+import os
+from django.conf import settings
+from django.http import FileResponse
+from django.shortcuts import get_object_or_404, render, redirect
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.contrib.auth import login, authenticate, logout
 from django.urls import reverse
@@ -285,5 +288,55 @@ class UserRecordsView(ListView):
         registros_modelo2 = Servicios.objects.filter(usuario=self.request.user).order_by('-id')
         registros_modelo3 = Internacionalizacion.objects.filter(usuario=self.request.user).order_by('-id')
         registros_modelo4 = Desarrollo.objects.filter(usuario=self.request.user).order_by('-id')
+        registros_modelo5 = Subsecretaria.objects.filter(usuario=self.request.user).order_by('-id')
 
-        return list(chain(registros_modelo1, registros_modelo2, registros_modelo3, registros_modelo4))
+
+        return list(chain(registros_modelo1, registros_modelo2, registros_modelo3, registros_modelo4, registros_modelo5))
+    
+
+class CreateSubse(UserPassesTestMixin,CreateView):
+    model = Subsecretaria
+    form_class = SubseForm
+    template_name = 'add_sub.html'
+    success_url = reverse_lazy('success_sub')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['departamentos'] = Departamento.objects.filter(id=5)
+        context['usuarios'] = User.objects.all()
+        return context
+    
+    def test_func(self):
+        allowed_groups = ['Sub', 'Administrador']
+        return self.request.user.groups.filter(name__in=allowed_groups).exists() 
+
+
+class ListSubse(UserPassesTestMixin,ListView):
+    model = Subsecretaria
+    template_name = "list_sub.html"
+    context_object_name = "subs"
+    ordering = '-id'
+
+    def test_func(self):
+        return self.request.user.groups.filter(name='Subsecretario').exists() 
+
+# View de guardado con exito
+class SuccessSubView(View):
+    template_name = 'success_sub.html' 
+
+    def get(self, request):
+        return render(request, self.template_name)    
+
+
+# --Update Subse (autorizacion e observación)
+class EditSub(UpdateView):
+    model = Subsecretaria
+    template_name = 'edit_sub.html'
+    form_class = SubAdminForm
+    success_url = reverse_lazy('listsub')  
+
+
+def obtener_pdf(request, pdf_id):
+    pdf = get_object_or_404(Subsecretaria, pk = pdf_id)
+    response = FileResponse(pdf.evidencia, content_type='application/pdf')
+    return response

@@ -1,5 +1,5 @@
 from django.contrib.auth.forms import UserCreationForm
-from api.models import Planeacion, Servicios, Internacionalizacion, Desarrollo
+from api.models import Planeacion, Servicios, Internacionalizacion, Desarrollo, Subsecretaria
 from django import forms
 
 class PlanForm(forms.ModelForm):
@@ -77,3 +77,28 @@ class DesAdminForm(forms.ModelForm):
         widgets = {
             'autorizacion': forms.CheckboxInput(attrs={'class': 'form-check-input'}),
             }
+        
+
+class SubseForm(forms.ModelForm):
+
+    class Meta:
+        model = Subsecretaria
+        fields='__all__'
+        exclude = ['autorizacion', 'observacion']
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        # Marcamos los campos que pueden ser null como no requeridos
+        for field_name, field in self.fields.items():
+            if field_name in ['evidencia']:
+                field.required = False    
+
+
+class SubAdminForm(forms.ModelForm):
+
+    class Meta:
+        model = Subsecretaria
+        fields=['autorizacion', 'observacion']
+        widgets = {
+            'autorizacion': forms.CheckboxInput(attrs={'class': 'form-check-input'}),
+            }           

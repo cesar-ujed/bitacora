@@ -1,8 +1,9 @@
 from django.urls import path
 from django.contrib.auth.decorators import login_required
 from frontend import views
-from .views import AdminView, CreatePlan, PlanList, EdithPlan, CreateServ, ServList, EdithServ, CreateInt, IntList, EditInt, CreateDes, DesList, EditDes, SuccessView, SuccessSEView, SuccessIView, SuccessDesView, UserRecordsView
-
+from .views import AdminView, CreatePlan, PlanList, EdithPlan, CreateServ, ServList, EdithServ, CreateInt, IntList, EditInt, CreateDes, DesList, EditDes, SuccessView, SuccessSEView, SuccessIView, SuccessDesView, UserRecordsView, SuccessSubView, CreateSubse, ListSubse, EditSub
+from django.conf import settings
+from django.conf.urls.static import static
 
 
 urlpatterns = [
@@ -20,6 +21,7 @@ urlpatterns = [
     path('success_servicios/',              login_required(SuccessSEView.as_view()),    name='success_serv'),
     path('success_internacionalizacion/',   login_required(SuccessIView.as_view()),     name='success_int'),
     path('success_desarrollo/',             login_required(SuccessDesView.as_view()),   name='success_des'),
+    path('success_subse/',                  login_required(SuccessSubView.as_view()),   name='success_sub'),
     # -- Planeacion
     path('add_planeacion/', login_required(CreatePlan.as_view()), name='addplan'),
     path('planeacion_admin/', login_required(PlanList.as_view()), name='adminplan'),
@@ -36,4 +38,13 @@ urlpatterns = [
     path('add_desarrollo_y_fortalecimiento/', login_required(CreateDes.as_view()), name='adddes'),
     path('desarrollo_y_fortalecimiento_admin/', login_required(DesList.as_view()), name='admindes'),
     path('edit_des_y_fort_acad/<int:pk>', login_required(EditDes.as_view()), name='editardes'),
+    # Subsecretario(a)
+    path('add_subsecretaria/', login_required(CreateSubse.as_view()), name='addsub'),
+    path('list_subsecretaria', login_required(ListSubse.as_view()), name='listsub'),
+    path('edit_subsecretaria/<int:pk>', login_required(EditSub.as_view()), name='editarsub'),
+    # get archivos(evidencia)
+    path('obtener_pdf/<int:pdf_id>/', views.obtener_pdf,    name='obtener_pdf'),
 ]
+
+if settings.DEBUG == True:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

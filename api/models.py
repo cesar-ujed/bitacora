@@ -87,7 +87,7 @@ class Subsecretaria(models.Model):
     actividad       = models.CharField(max_length=255)
     autorizacion    = models.BooleanField(default=False, null=True)
     observacion     = models.CharField(max_length=255, null=True)
-    evidencia        = models.FileField(upload_to='archivos_pdf/', null=True)
+    evidencia        = models.FileField(upload_to='archivos_pdf/', null=True, blank=True)
     usuario         = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):
