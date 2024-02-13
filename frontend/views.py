@@ -231,6 +231,7 @@ class DesList(UserPassesTestMixin, ListView):
     model = Desarrollo
     template_name = "des_admin.html"
     context_object_name = "des_actividades"
+    ordering = '-id'
 
     def test_func(self):
         allowed_groups = ['Administrador', 'Desarrollo_Admin']

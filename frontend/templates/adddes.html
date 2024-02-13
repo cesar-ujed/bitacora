@@ -23,21 +23,16 @@
                     <div class="form-control col sm:col-1/2">
                         <p><label for="">Actividad: </label></p>
                         <textarea class="form-field" name="actividad" type="text" cols="70" rows="5"></textarea>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="form-control col sm:col-1/2">
-                        <p><label for="">Departamento: </label></p>
-                        <select class="form-field" name="departamento" id="">
+                        <br><br>
+                        <label for="archivo">Evidencia (si se requiere):</label><br>
+                        <input  type="file" id="evidencia" name="evidencia"><br><br>
+                        <select class="form-field" name="departamento" id="" hidden>
                             {% for i in departamentos %}
                             <option name="departamento" value="{{ i.id }}">{{ i.nombre }}</option>
                             {% endfor %}
                         </select> 
-                        {% comment %} <br>
-                        <br>
-                        <p><label for="">Usuario: </label></p> {% endcomment %}
                         <input class="form-field" name="usuario" type="text" readonly value="{{ user.id }}" placeholder="{{ user.username }}" hidden>
-                    </div> 
+                    </div>
                 </div>
                 <div class="row">
                     <div class="d-grid form-control">
