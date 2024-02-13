@@ -29,6 +29,7 @@ class Planeacion(models.Model):
     hora_final      = models.DateTimeField(auto_now_add=False)
     horas_total     = models.FloatField(null=True)
     actividad       = models.CharField(max_length=255)
+    evidencia       = models.FileField(upload_to='archivos_pdf/', null=True, blank=True)
     autorizacion    = models.BooleanField(default=False, null=True)
     observacion     = models.CharField(max_length=255, null=True)
     usuario         = models.ForeignKey(User, on_delete=models.CASCADE)
