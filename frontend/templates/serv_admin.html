@@ -14,8 +14,9 @@
           <th>Total</th>
           <th>Actividad</th>
           <th>Usuario</th>
+          <th>Evidencia</th>
           <th>Autorización</th>
-          <th>Observacion</th>
+          <th>Observación</th>
           <th>Acciones</th>
         </tr>
       </thead>
@@ -28,6 +29,13 @@
             <td>{{ i.horas_total }} hrs.</td>
             <td>{{ i.actividad }}</td>
             <td>{{ i.usuario.first_name }} {{i.usuario.last_name}}</td>
+            <td>
+              {% if i.evidencia %}
+                <a class="btn btn-link" href="{{ i.evidencia.url }}" target="_blank">Ver evidencia</a>
+              {% else %}
+                Sin evidencia
+              {% endif %}  
+            </td>
             <td>
               {% if i.autorizacion == True %}
                 Autorizado

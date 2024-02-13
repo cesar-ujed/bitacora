@@ -35,7 +35,14 @@ class ServForm(forms.ModelForm):
     class Meta:
         model = Servicios
         fields='__all__'
-        exclude = ['autorizacion', 'observacion']     
+        exclude = ['autorizacion', 'observacion']   
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        # Marcamos los campos que pueden ser null como no requeridos
+        for field_name, field in self.fields.items():
+            if field_name in ['evidencia']:
+                field.required = False            
 
 
 class ServAdminForm(forms.ModelForm):
