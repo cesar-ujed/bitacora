@@ -23,8 +23,12 @@
                     <div class="form-control col sm:col-1/2">
                         <p><label for="">Actividad: </label></p>
                         <textarea class="form-field" name="actividad" type="text" cols="70" rows="5"></textarea>
-                        <p><label for="">Departamento: </label></p>
-                        <select class="form-field" name="departamento" id="">
+                        <br>
+                        <br>
+                        <label for="archivo">Evidencia (si se requiere):</label><br>
+                        <input  type="file" id="evidencia" name="evidencia"><br><br>
+                        {% comment %} <p><label for="">Departamento: </label></p> {% endcomment %}
+                        <select class="form-field" name="departamento" id="" hidden>
                             {% for i in departamentos %}
                             <option name="departamento" value="{{ i.id }}">{{ i.nombre }}</option>
                             {% endfor %}

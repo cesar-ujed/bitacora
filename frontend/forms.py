@@ -9,6 +9,13 @@ class PlanForm(forms.ModelForm):
         fields='__all__'
         exclude = ['autorizacion', 'observacion']
 
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        # Marcamos los campos que pueden ser null como no requeridos
+        for field_name, field in self.fields.items():
+            if field_name in ['evidencia']:
+                field.required = False  
+
         
 
 class PlanAdminForm(forms.ModelForm):
