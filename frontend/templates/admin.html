@@ -4,7 +4,7 @@
 {% block content %}
 
 <div class="container">
-    <h1>Bienvenido administrador {{ user.username }}</h1>
+    <h2>Bienvenido(a) {{ user.first_name }} {{ user.last_name}}</h2>
     <br>
     <div class="row">
         <div class="col-lg">
@@ -12,7 +12,9 @@
                 <div class="card-body">
                   <h5 class="card-title">DPI</h5>
                   <p class="card-text">Dirección de Planeacion Intitucional. Bitácora de actividades</p>
-                  <a href="{% url 'adminplan' %}" class="btn btn-primary">→</a>
+                  <div class="d-grid gap-2">
+                      <a href="{% url 'adminplan' %}" class="btn btn-primary">→</a>
+                  </div>
                 </div>
             </div>
         </div>
@@ -21,35 +23,42 @@
                 <div class="card-body">
                   <h5 class="card-title">DSE</h5>
                   <p class="card-text">Dirección de Servicios Educativos. Bitácora de actividades</p>
-                  <a href="{% url 'adminserv' %}" class="btn btn-primary">→</a>
+                  <div class="d-grid gap-2">
+                      <a href="{% url 'adminserv' %}" class="btn btn-primary">→</a>
+                  </div>
                 </div>
             </div>
         </div>
         <div class="col-lg">
             <div class="card" style="width: 18rem; margin: 1em;">
                 <div class="card-body">
-                  <h5 class="card-title">DM</h5>
-                  <p class="card-text">Dirección de Movilidad. Bitácora de actividades</p>
-                  <a href="{% url 'adminint' %}" class="btn btn-primary">→</a>
+                  <h5 class="card-title">DI</h5>
+                  <p class="card-text">Dirección de Internacionalización. Bitácora de actividades</p>
+                  <div class="d-grid gap-2">
+                      <a href="{% url 'adminint' %}" class="btn btn-primary">→</a>
+                  </div>
                 </div>
             </div>
         </div>
-        <br>
         <div class="col-lg">
             <div class="card" style="width: 18rem; margin: 1em;">
                 <div class="card-body">
                   <h5 class="card-title">DDFA</h5>
                   <p class="card-text">Dirección de Dessarrollo y Fortalecimiento Académico. Bitácora de actividades</p>
-                  <a href="{% url 'admindes' %}" class="btn btn-primary">→</a>
+                  <div class="d-grid gap-2">
+                      <a href="{% url 'admindes' %}" class="btn btn-primary">→</a>
+                  </div>
                 </div>
             </div>
         </div>
         <div class="col-lg">
             <div class="card" style="width: 18rem; margin: 1em;">
                 <div class="card-body">
-                  <h5 class="card-title">Subsecretario(a)</h5>
-                  <p class="card-text">Subsecretaria. Bitácora de actividades</p>
-                  <a href="{% url 'listsub' %}" class="btn btn-primary">→</a>
+                  <h5 class="card-title">SSGA</h5>
+                  <p class="card-text">Subsecretaría General Académica. Bitácora de actividades</p>
+                  <div class="d-grid gap-2">
+                      <a href="{% url 'listsub' %}" class="btn btn-primary">→</a>
+                  </div>
                 </div>
             </div>
         </div>

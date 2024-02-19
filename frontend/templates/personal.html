@@ -4,24 +4,28 @@
 {% block content %}
 
 <div class="container">
-    <h1>Bienvenido {{ user.username }}</h1>
+    <h3>Bienvenido(a) {{ user.first_name }} {{ user.last_name }}</h3><br/>
     <br>
     <div class="row">
         <div class="col-lg">
             <div class="card" style="width: 18rem; margin: 1em;">
                 <div class="card-body">
-                  <h5 class="card-title">PI</h5>
+                  <h5 class="card-title">DPI</h5>
                   <p class="card-text">Dirección de Planeacion Intitucional. Actividades</p>
-                  <a href="{% url 'addplan' %}" class="btn btn-primary">Crear Actividad +</a>
+                  <div class="d-grid  gap-2">
+                      <a href="{% url 'addplan' %}" class="btn btn-primary">＋</a>
+                  </div>
                 </div>
             </div>
         </div>
         <div class="col-lg">
             <div class="card" style="width: 18rem; margin: 1em;">
                 <div class="card-body">
-                  <h5 class="card-title">SE</h5>
+                  <h5 class="card-title">DSE</h5>
                   <p class="card-text">Dirección de Servicios Educativos. Actividades</p>
-                  <a href="{% url 'addserv' %}" class="btn btn-primary">Crear Actividad +</a>
+                  <div class="d-grid gap-2">
+                      <a href="{% url 'addserv' %}" class="btn btn-primary">＋</a>
+                  </div>
                 </div>
             </div>
         </div>
@@ -30,7 +34,9 @@
                 <div class="card-body">
                   <h5 class="card-title">DI</h5>
                   <p class="card-text">Dirección de Movilidad. Actividades</p>
-                  <a href="{% url 'addint' %}" class="btn btn-primary">Crear Actividad +</a>
+                  <div class="d-grid gap-2">
+                      <a href="{% url 'addint' %}" class="btn btn-primary">＋</a>
+                  </div>
                 </div>
             </div>
         </div>
@@ -40,16 +46,28 @@
                 <div class="card-body">
                   <h5 class="card-title">DDFA</h5>
                   <p class="card-text">Dirección de Dessarrollo y Fortalecimiento Académico. Actividades</p>
-                  <a href="{% url 'adddes' %}" class="btn btn-primary">Crear Actividad +</a>
+                  <div class="d-grid gap-2">
+                      <a href="{% url 'adddes' %}" class="btn btn-primary">＋</a>
+                  </div>
                 </div>
             </div>
         </div>
         <div class="col-lg">
             <div class="card" style="width: 18rem; margin: 1em;">
                 <div class="card-body">
-                  <h5 class="card-title">Subsecretario(a)</h5>
-                  <p class="card-text">Subsecretaria General Académica</p>
-                  <a href="{% url 'addsub' %}" class="btn btn-primary">Crear Actividad +</a>
+                  <h5 class="card-title">SSGA</h5>
+                  <p class="card-text">Subsecretaria General Académica. Crear nuevas actividades.</p>
+                  <div class="d-grid gap-2">
+                      <a href="{% url 'addsub' %}" class="btn btn-primary">＋</a>
+                  </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg">
+            <div class="card" style="width: 18rem; margin: 1em;">
+                <div class="card-body">
+                  <h5 class="card-title">Nota</h5>
+                  <p class="card-text">Selecciona tu Dirección correspondiente y agrega una nueva actividad.</p>
                 </div>
             </div>
         </div>
