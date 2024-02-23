@@ -26,13 +26,13 @@ body {
 }
 
 section {
-  position: fixed;
+  /* position: fixed; */
   left: 0;
-  bottom: 12px;
+  /* bottom: 12px; */
   width: 100%;
   background: #172940;
   /* background: #b3142c; */
-  padding-top: 60px;
+  padding-top: 70px;
 }
 
 footer {

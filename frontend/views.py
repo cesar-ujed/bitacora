@@ -191,7 +191,7 @@ class IntList(UserPassesTestMixin, ListView):
     model = Internacionalizacion
     template_name = "int_admin.html"
     context_object_name = "int_actividades"
-    ordering = "-id"
+    ordering = '-id'
     # paginate_by = 5
 
     def test_func(self):
