@@ -1,0 +1,10 @@
+.env
+env/
+__pycache__/
+*.sqlite3
+*.pyc
+pyc
+venv/
+requirements.txt
+media/
+media/archivos_pdf/*.*
